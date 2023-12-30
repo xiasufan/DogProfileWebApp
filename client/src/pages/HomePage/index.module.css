@@ -1,22 +1,33 @@
+.homeContainer {
+  display: flex;
+  justify-content: space-evenly; /* 使子元素分散对齐 */
+  height: 80vh;
+  padding: 20px; /* 添加一些内边距 */
+}
+
+.loginContainer {
+  display: inline-block;
+  margin-right: 100px;
+  vertical-align: top;
+  background-color: #f4f4f4;
+  padding: 20px;
+  border-radius: 5px; /* 设置边角为原边 */
+}
+
 .textContainer {
-  position: absolute;
-  top: 25vh; /* 固定在 .RiveContainer 的顶部 */
+  position: relative; /* 相对定位，以便在其中设置绝对定位 */
+  top: 25vh;
   width: 100%;
-  padding-right: 10px;
   text-align: center;
   margin-bottom: 20px;
   user-select: none;
   pointer-events: none;
 }
+.textContainer h2 {
+  margin-left: -30px; /* 负的左外边距，根据需要进行调整 */
+}
 
 .RiveContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 80vh;
-  width: 100%;
+  width: 60%; /* 调整 Rive 容器的宽度，根据需要进行调整 */
   max-width: 800px;
-  margin: auto;
-  
 }

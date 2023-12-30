@@ -1,14 +1,22 @@
-import React from 'react';
-import styles from './index.module.css'
-import { AnimationComponent } from "../../components/animationComponent";
+import React, { useState } from 'react';
+import LoginForm from '../../components/loginComponent';
+import {AnimationComponent} from '../../components/animationComponent';
+import styles from './index.module.css';
 
 const Home = () => {
+
   return (
-    <div className={styles.RiveContainer}>
-      <div className={styles.textContainer}>
-        <h2>Click to pet ↓</h2>
+    <div className={styles.homeContainer}>
+      <div className={styles.loginContainer}>
+        
+        <LoginForm />
       </div>
-      <AnimationComponent />
+      <div className={styles.RiveContainer}>
+        <div className={styles.textContainer}>
+          <h2>Click ↓</h2>
+        </div>
+        <AnimationComponent />
+      </div>
     </div>
   );
 };

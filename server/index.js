@@ -73,17 +73,18 @@ app.post("/register", (req, res) => {
       console.log(err);
     }
 
-    db.query(
-      "INSERT INTO users (username, password, role) VALUES (?,?,?)",
-      [username, hash, "user"],
-      (err, result) => {
-        console.log(err);
-        if (err) {
-          res.send({ message: "Registration failed.. User might already exist" });
-        }
+    const sql = "INSERT INTO users (username, password, role) VALUES (?,?,?)";
+    const values = [username, hash, "user"];
+
+    db.query(sql, values, (err, result) => {
+      if (err) {
+        console.error(err);
+        res.send({ message: "Registration failed.. User might already exist" });
+      } else {
+        console.log("SQL query:", sql, "with values:", values);
         res.send({ message: "Registration successful ^_^" });
       }
-    );
+    });
   });
 });
 
@@ -118,7 +119,7 @@ app.post("/login", (req, res) => {
           bcrypt.compare(password, result[0].password, (error, response) => {
             if (response) {
               req.session.user = result;
-              res.send(result);
+              res.send({ message: "Login successful", user: result });
             } else {
               res.send({ message: "failed to match password" });
             }
@@ -129,4 +130,8 @@ app.post("/login", (req, res) => {
       }
     }
   );
+});
+
+app.listen(3001, () => {
+  console.log("server is running on port 3001");
 });
