@@ -3,6 +3,8 @@ const app = express();
 const mysql = require("mysql2");
 const cors = require("cors");
 
+require('dotenv').config();
+
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 
@@ -14,7 +16,7 @@ app.use(express.json());
 
 app.use(
   cors({
-    origin: ["http://localhost:3000"],
+    origin: [process.env.CORS_ORIGIN],
     credentials: true,
   })
 );
@@ -24,7 +26,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(
   session({
     key: "userId",
-    secret: "xiasufan",
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
     cookie: {
@@ -34,10 +36,10 @@ app.use(
 );
 
 var db_config = {
-  user: "root",
-  host: "localhost",
-  password: "ttt111222",
-  database: "own_project",
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_DATABASE,
 };
 
 var db = mysql.createConnection(db_config);
