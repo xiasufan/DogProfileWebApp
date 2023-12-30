@@ -17,4 +17,4 @@ COPY . .
 EXPOSE 3000
 
 # 定义运行时的命令
-CMD ["node", "server.js"]
+CMD ["node", "index.js"]
