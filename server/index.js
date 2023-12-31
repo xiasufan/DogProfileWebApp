@@ -2,12 +2,16 @@ const express = require("express");
 const app = express();
 const mysql = require("mysql2");
 const cors = require("cors");
-const path = require("path");
-
-app.use(express.static(path.join(__dirname, 'build')));
 
 
 require('dotenv').config();
+
+app.use(
+  cors({
+    origin: [process.env.CORS_ORIGIN],
+    credentials: true,
+  })
+);
 
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
@@ -18,12 +22,7 @@ const session = require("express-session");
 
 app.use(express.json());
 
-app.use(
-  cors({
-    origin: [process.env.CORS_ORIGIN],
-    credentials: true,
-  })
-);
+
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -136,11 +135,6 @@ process.on('exit', () => {
       console.log('Pool has been closed.');
     }
   });
-});
-
-// 捕获所有其他请求并返回 `index.html`
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
 const PORT = process.env.PORT || 3001;

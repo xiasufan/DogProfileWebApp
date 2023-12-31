@@ -27,10 +27,10 @@ function Form({ option }) {
         }).then((response) => {
           if (response.data.message) {
             alert(response.data.message);
-            
+            navigate(0);
           } else {
   
-           
+            navigate(0);
           }
         });
       };
@@ -43,7 +43,7 @@ function Form({ option }) {
           if (response.data.message) {
             alert(response.data.message);
           } else {
-          
+            navigate(0);
           }
         });
       };
