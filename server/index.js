@@ -2,6 +2,10 @@ const express = require("express");
 const app = express();
 const mysql = require("mysql2");
 const cors = require("cors");
+const path = require("path");
+
+app.use(express.static(path.join(__dirname, 'build')));
+
 
 require('dotenv').config();
 
@@ -134,6 +138,12 @@ process.on('exit', () => {
   });
 });
 
-app.listen(3001, () => {
-  console.log("server is running on port 3001");
+// 捕获所有其他请求并返回 `index.html`
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
+
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
