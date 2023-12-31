@@ -40,31 +40,21 @@ var db_config = {
   host: process.env.DB_HOST,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_DATABASE,
+  connectionLimit: 5, // Set the maximum number of connections
+  waitForConnections: true, // When no connections are available, wait for one
+  queueLimit: 20, // limit on the number of queued connection requests
 };
 
-var db = mysql.createConnection(db_config);
+const db = mysql.createPool(db_config);
 
-function handleDisconnect() {
-  db = mysql.createConnection(db_config);
-
-  db.connect(function (err) {
-    if (err) {
-      console.log("error when connecting to db:", err);
-      setTimeout(handleDisconnect, 2000);
-    }
-  });
-
-  db.on("error", function (err) {
-    console.log("db error", err);
-    if (err.code === "PROTOCOL_CONNECTION_LOST") {
-      handleDisconnect();
-    } else {
-      throw err;
-    }
-  });
-}
-
-handleDisconnect();
+// Error handling for the connection pool
+db.on('error', function(err) {
+  console.error('Database error: ', err);
+  // Log the state of the connection pool
+  console.log('Total connections in pool: ', pool.totalConnections());
+  console.log('Free connections in pool: ', pool.freeConnections());
+  console.log('Connection queue length: ', pool.queue.length);
+});
 
 app.post("/register", (req, res) => {
   const username = req.body.username;
@@ -132,6 +122,16 @@ app.post("/login", (req, res) => {
       }
     }
   );
+});
+
+process.on('exit', () => {
+  pool.end((err) => {
+    if (err) {
+      console.error('Error closing the pool: ', err);
+    } else {
+      console.log('Pool has been closed.');
+    }
+  });
 });
 
 app.listen(3001, () => {
