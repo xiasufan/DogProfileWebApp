@@ -5,7 +5,7 @@ import Axios from "axios";
 
 Axios.defaults.withCredentials = true;
 
-
+const apiUrl = process.env.REACT_APP_API_URL;
 
 // Design from https://codepen.io/dineshbatchu/pen/eYZmRRL
 function Form({ option }) {
@@ -21,7 +21,7 @@ function Form({ option }) {
     const [username, setUsername] = useState("");
 
     const register = () => {
-        Axios.post("http://" + window.ipport + "/register", {
+        Axios.post(apiUrl + "/register", {
           username: usernameReg,
           password: passwordReg,
         }).then((response) => {
@@ -36,7 +36,7 @@ function Form({ option }) {
       };
     
       const login = () => {
-        Axios.post("http://" + window.ipport + "/login", {
+        Axios.post(apiUrl + "/login", {
           username: username,
           password: password,
         }).then((response) => {

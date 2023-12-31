@@ -10,7 +10,6 @@ import Friend from "./pages/Friend"
 import History from "./pages/History"
 import Stat from "./pages/Stat"
 
-window.ipport = 'localhost:3001';
 
 export default function App() {
   return (
