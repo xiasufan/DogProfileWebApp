@@ -12,9 +12,6 @@ const Home = () => {
         <LoginForm />
       </div>
       <div className={styles.RiveContainer}>
-        <div className={styles.textContainer}>
-          <h2>Click ↓</h2>
-        </div>
         <AnimationComponent />
       </div>
     </div>

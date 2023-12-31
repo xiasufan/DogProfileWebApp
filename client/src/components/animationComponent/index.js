@@ -9,8 +9,8 @@ export const AnimationComponent = () => {
     stateMachines: "State Machine 1",
     // This is optional.Provides additional layout control.
     layout: new Layout({
-      fit: Fit.Fit, // Change to: rive.Fit.Contain, or Cover
-      alignment: Alignment.Center
+      fit: Fit.FitHeight, // Change to: rive.Fit.Contain, or Cover
+      alignment: Alignment.BottomCenter
     }),
     autoplay: true
   });
