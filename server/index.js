@@ -37,8 +37,8 @@ app.use(
     cookie: {
       expires: 60 * 60 * 5 * 1000,
       httpOnly: true,
-      secure: true,  // 直接设置为 true 用于测试
-      sameSite: 'none' // 直接设置为 'None' 用于测试
+      secure: process.env.NODE_ENV === 'production', 
+      sameSite: process.env.NODE_ENV === 'production' ? 'none' : undefined
       
     },
   })

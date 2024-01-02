@@ -20,14 +20,14 @@ const Home = ({loginName, loginRole}) => {
 navigate(0)
   };
 
-  const cookietest = () => {
-    Axios.get(process.env.REACT_APP_API_URL +"/test-cookie").then((response) => {
-        console.log(response)
-})
-  };
+//   const cookietest = () => {
+//     Axios.get(process.env.REACT_APP_API_URL +"/test-cookie").then((response) => {
+//         console.log(response)
+// })
+//   };
   return (
     <div className={styles.homeContainer}>
-      <button onClick={cookietest} style={{ zIndex: 9999 }}>test cookie</button>
+      {/*<button onClick={cookietest} style={{ zIndex: 9999 }}>test cookie</button>*/}
       <ToastContainer
     position="top-right"
     autoClose={100}
