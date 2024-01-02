@@ -10,7 +10,7 @@ const useAuth = () => {
     useEffect(() => {
         const checkLoginStatus = async () => {
             try {
-                const response = await Axios.get(`${process.env.REACT_APP_API_URL}/login`);
+                const response = await Axios.get(process.env.REACT_APP_API_URL+'/login');
                 if (response.data.loggedIn) {
                     setLoginName(response.data.user[0].username);
                     setLoginRole(response.data.user[0].role);
