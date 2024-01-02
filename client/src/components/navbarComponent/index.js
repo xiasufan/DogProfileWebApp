@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 export default function Navbar() {
     return (
       <nav>
-        <h1 style={{ color: 'white', fontSize: '2rem' }}>DailyQuests</h1>
+        <h1 style={{ color: 'white', fontSize: '2rem' }}>夏苏烦的伟大作品</h1>
         <div>
         <ul className={styles.navbar} >
           <li><NavLink to="/" style={({ isActive }) => ({ color: isActive ? "#62deec" : "" })} >
