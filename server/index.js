@@ -34,8 +34,7 @@ app.use(
     saveUninitialized: false,
     cookie: {
       expires: 60 * 60 * 5 * 1000,
-      secure: true,    // only allow HTTPS for cookie
-      sameSite: 'None' // allow cross-site cookie
+      sameSite: false // allow cross-site cookie
     },
   })
 );
