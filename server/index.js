@@ -87,6 +87,11 @@ app.post("/register", (req, res) => {
   });
 });
 
+app.get('/test-cookie', (req, res) => {
+  res.cookie('test', 'value', { maxAge: 900000, httpOnly: true, secure: true, sameSite: 'None' });
+  res.send('Test cookie set');
+});
+
 app.get("/login", (req, res) => {
   if (req.session.user) {
     res.send({ loggedIn: true, user: req.session.user });

@@ -19,8 +19,15 @@ const Home = ({loginName, loginRole}) => {
 });navigate('/');
 navigate(0)
   };
+
+  const cookietest = () => {
+    Axios.get(process.env.REACT_APP_API_URL +"/test-cookie").then((response) => {
+        console.log(response)
+})
+  };
   return (
     <div className={styles.homeContainer}>
+      <button onClick={cookietest}>test cookie</button>
       <ToastContainer
     position="top-right"
     autoClose={100}
