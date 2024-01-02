@@ -27,7 +27,7 @@ navigate(0)
   };
   return (
     <div className={styles.homeContainer}>
-      <button onClick={cookietest}>test cookie</button>
+      <button onClick={cookietest} style={{ zIndex: 9999 }}>test cookie</button>
       <ToastContainer
     position="top-right"
     autoClose={100}

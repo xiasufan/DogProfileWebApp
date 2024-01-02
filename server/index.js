@@ -26,6 +26,8 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.set('trust proxy', 1);
+
 app.use(
   session({
     key: "userId",
@@ -36,7 +38,7 @@ app.use(
       expires: 60 * 60 * 5 * 1000,
       httpOnly: true,
       secure: true,  // 直接设置为 true 用于测试
-      sameSite: 'None' // 直接设置为 'None' 用于测试
+      sameSite: 'none' // 直接设置为 'None' 用于测试
       
     },
   })
