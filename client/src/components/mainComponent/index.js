@@ -4,9 +4,9 @@ import Axios from 'axios';
 
 export default function Main({loginName}) {
     return (
-        <div>welcome {loginName}
-        
-        <h1>暂时什么都做不了 敬请期待哈哈</h1>
+        <div><h1>welcome {loginName}</h1>
+
+        <h1 >功能还在开发中 摸摸狗玩吧👇</h1>
         </div>
     );
       
