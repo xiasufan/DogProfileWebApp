@@ -34,7 +34,8 @@ app.use(
     saveUninitialized: false,
     cookie: {
       expires: 60 * 60 * 5 * 1000,
-
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: process.env.NODE_ENV === 'production' ? 'none' : null
       
     },
   })
