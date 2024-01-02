@@ -13,11 +13,6 @@ app.use(
   })
 );
 
-app.use((req, res, next) => {
-  res.header('Set-Cookie', 'SameSite=None; Secure');
-  next();
-});
-
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 
@@ -39,6 +34,8 @@ app.use(
     saveUninitialized: false,
     cookie: {
       expires: 60 * 60 * 5 * 1000,
+      secure: true,    // only allow HTTPS for cookie
+      sameSite: 'None' // allow cross-site cookie
     },
   })
 );
