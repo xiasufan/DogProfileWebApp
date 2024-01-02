@@ -38,7 +38,7 @@ app.use(
       expires: 60 * 60 * 5 * 1000,
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production', 
-      sameSite: process.env.NODE_ENV === 'production' ? 'lax' : undefined
+      sameSite: process.env.NODE_ENV === 'production' ? 'none' : undefined
       
     },
   })
