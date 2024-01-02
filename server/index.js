@@ -13,6 +13,11 @@ app.use(
   })
 );
 
+app.use((req, res, next) => {
+  res.header('Set-Cookie', 'SameSite=None; Secure');
+  next();
+});
+
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 
