@@ -47,7 +47,9 @@ function Form({ option }) {
           if (response.data.user) {
             toast.success('登录成功',{
               hideProgressBar: true,
-
+              onClose: () => {
+                navigate(0)
+                }
               
             });
 
