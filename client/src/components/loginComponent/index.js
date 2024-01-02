@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import styles from './index.module.css';
 import { useNavigate } from "react-router-dom";
 import Axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 Axios.defaults.withCredentials = true;
 
@@ -36,14 +38,29 @@ function Form({ option }) {
       };
     
       const login = () => {
+        toast.clearWaitingQueue();
+      
         Axios.post(apiUrl + "/login", {
           username: username,
           password: password,
         }).then((response) => {
-          if (response.data.message) {
-            alert(response.data.message);
+          if (response.data.user) {
+            toast.success('登录成功',{
+              hideProgressBar: true,
+              onClose: () => {
+                navigate(0)
+                }
+              
+            });
+
           } else {
-            navigate(0);
+            if (response.data.message) {
+              
+              toast.error(response.data.message,{autoClose: 2000,hideProgressBar: false,});
+            }
+            else{
+              navigate(0)
+            }
           }
         });
       };
@@ -84,7 +101,7 @@ function Form({ option }) {
           <input
             id='email'
             name='email'
-            type='email'
+            type='text'
             placeholder='E-mail'
             required
             onChange={(e) => {
@@ -124,6 +141,7 @@ function LoginForm() {
 
   return (
     <div className={styles.container}>
+    
       <header className={styles.header}>
         <div className={`${styles['header-headings']} ${styles[option === 1 ? 'sign-in' : (option === 2 ? 'sign-up' : 'forgot')]}`}>
           <span>Sign in to your account</span>

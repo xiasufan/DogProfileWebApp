@@ -16,7 +16,7 @@ export default function Navbar() {
             Stats
           </NavLink></li>
   
-          <li><NavLink to="/friends" style={({ isActive }) => ({ color: isActive ? "#62deec" : "" })}>
+          <li><NavLink to="/friend" style={({ isActive }) => ({ color: isActive ? "#62deec" : "" })}>
             Friendlist
           </NavLink></li>
   

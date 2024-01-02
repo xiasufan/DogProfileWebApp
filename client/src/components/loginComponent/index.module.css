@@ -46,7 +46,7 @@
   width: 350px;
   margin-left: -30px;
 }
-@media screen and (max-width: 380px) {
+@media screen and (max-width: 600px) {
   .options {
     width: 100%;
   }
@@ -69,6 +69,7 @@
 }
 .options > li:last-of-type {
   margin-left: auto;
+  margin-right: 15px;
 }
 
 .account-form {
@@ -148,3 +149,4 @@
   color:#a95656;
   margin-bottom: 10px;
 }
+

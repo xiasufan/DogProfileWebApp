@@ -22,3 +22,27 @@
   bottom: 0;
   margin: 0 auto;
 }
+.logout{
+  position: fixed;
+  bottom: 50px;
+  right: 20px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 100;
+
+}
+.logout:hover {
+  background-color: #0056b3;
+}
+
+/* 媒体查询 - 对小屏幕进行样式调整 */
+@media screen and (max-width: 600px) {
+  .loginContainer {
+    width: 80%; /* 减少宽度 */
+    margin-top: -50px; /* 调整顶部边距 */
+  }
+}
