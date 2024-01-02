@@ -34,7 +34,9 @@ app.use(
     saveUninitialized: false,
     cookie: {
       expires: 60 * 60 * 5 * 1000,
-      sameSite: false // allow cross-site cookie
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: process.env.NODE_ENV === 'production' ? 'none' : null
+      
     },
   })
 );
