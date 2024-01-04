@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './index.module.css';
 import { NavLink } from "react-router-dom";
 
 export default function Navbar() {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
     return (
       <nav>
         <h1 style={{ color: 'white', fontSize: '2rem' }}>Welcome</h1>
-        <div>
-        <ul className={styles.navbar} >
+        <ul className={`${styles.navbar} ${sidebarOpen ? styles.active : ''}`} >
           <li><NavLink to="/" style={({ isActive }) => ({ color: isActive ? "#62deec" : "" })} >
             Home
           </NavLink></li>
@@ -23,8 +26,14 @@ export default function Navbar() {
           <li><NavLink to="/history" style={({ isActive }) => ({ color: isActive ? "#62deec" : "" })}>
             Activities
           </NavLink></li>
+          
         </ul>
-        </div>
+        <div className={`${styles.hamburgerMenu} ${sidebarOpen ? styles.active : ''}`} onClick={toggleSidebar}>
+        <div className={styles.bar}></div>
+        <div className={styles.bar}></div>
+        <div className={styles.bar}></div>
+      </div>
+
       </nav>
     );
   }

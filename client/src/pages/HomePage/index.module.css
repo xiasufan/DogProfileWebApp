@@ -1,10 +1,10 @@
 .homeContainer {
   display: flex;
-  position: relative;
+
   flex-direction: column;
   background-color: #f4f4f4;
   align-items: center;
-  height: calc(100vh - 150px);;
+  flex-grow: 1;
 }
 
 .loginContainer {

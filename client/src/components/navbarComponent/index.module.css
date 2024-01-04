@@ -1,10 +1,11 @@
 /* 导航栏样式 */
 nav {
+  max-height: 10vh;
   display: flex;
   align-items: center;
   justify-content: space-between;
   background: #363538;
-  padding: 20px 80px;
+  padding: 20px 50px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
   font-family: Arial;
 }
@@ -20,34 +21,58 @@ nav {
 .navbar li {
   list-style: none;
   padding: 0 20px;
+  display: inline-block;
   position: relative;
 }
 
 /* 导航栏链接样式 */
 .navbar li a {
   text-decoration: none;
+  position: relative;
   font-size: 1.3rem;
   font-weight: 600;
   color: #fff;
   transition: 0.3s ease-in-out;
 }
 
-/* 导航栏链接悬停和激活样式 */
-.navbar li a:hover,
-.navbar li a.active {
+.navbar li a:before {
+  left: 0;
+  transition: 0.5s;
+}
+
+.navbar li a:after {
+  background: rgb(255, 255, 255);
+  right: 0;
+  /* transition: width 0.8s cubic-bezier(0.22, 0.61, 0.36, 1); */
+}
+
+.navbar li a:hover {
+  /* border-bottom: 1px solid rgb(28, 121, 184); */
   color: #62deec;
+  transition: all 1s ease;
+  -webkit-transition: all 1s ease;
+}
+
+.navbar li a:hover:before {
+  background: #62deec;
+  width: 100%;
+  transition: width 0.5s cubic-bezier((0.22, 0.61, 0.36, 1));
+}
+
+.navbar li a:hover:after {
+  background: transparent;
+  width: 100%;
+  /* transition: 0s; */
 }
 
 /* 导航栏链接悬停和激活时的下划线效果 */
-.navbar li a:hover::after,
-.navbar li a.active::after {
-  content: "";
-  width: 30%;
-  height: 2px;
-  background: #62deec;
+.navbar li a:before, .navbar li a:after {
+  content: '';
   position: absolute;
-  bottom: -4px;
-  left: 20px;
+  width: 0%;
+  height: 3px;
+  bottom: -5px;
+  background: rgb(255, 255, 255);
 }
 
 /* 移动设备样式 */
@@ -69,13 +94,15 @@ nav {
     justify-content: flex-start;
     position: fixed;
     top: 90px;
-    right: -300px;
-    width: 300px;
+    right: -360px;
+    width: 50vw;
+    max-width: 250px;
     height: 100vh;
-    background: #2a3239;
+    background: #363538;
     box-shadow: 0 40px 60px rgba(0, 0, 0, 0.1);
-    padding: 40px 0 0 10px;
+    padding: 60px 0 0 10px;
     transition: 0.3s ease-in-out;
+    z-index: 150;
   }
 
   .navbar.active {
@@ -83,7 +110,7 @@ nav {
   }
 
   .navbar li {
-    margin-bottom: 25px;
+    margin-bottom: 30px;
   }
 
   .mobile {
@@ -93,5 +120,45 @@ nav {
   .mobile i {
     font-size: 24px;
     cursor: pointer;
+  }
+}
+
+
+.hamburgerMenu {
+  cursor: pointer;
+  width: 30px;
+  height: 25px;
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.bar {
+  width: 100%;
+  height: 3px;
+  background-color: #fff;
+  transition: all 0.3s ease;
+}
+
+.hamburgerMenu.active .bar:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburgerMenu.active .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburgerMenu.active .bar:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -6px);
+}
+
+.navbar.active {
+  right: 0; /* 显示侧边栏 */
+}
+/* 在手机模式下显示下拉栏按钮 */
+@media screen and (max-width: 769px) {
+  .hamburgerMenu {
+    display: flex;
   }
 }
