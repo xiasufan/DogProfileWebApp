@@ -151,32 +151,35 @@
   margin-bottom: 10px;
 }
 
-@media screen and (max-height: 800px){
+@media screen and ((max-height: 700px)){
+  .container{
+    margin-top: 20px;
+  }
   .container > header {
     font-size: 1rem; /* 减小字体大小 */
     margin-top: -5vh;
-    margin: 0 auto auto auto;
+    margin: 0 auto -5px auto;
   }
 
   .account-form-fields > input {
-    padding: 1vh;
+    padding: 8px;
 
   }
 
   .btn-submit-form {
-    padding: 1vh;
+    padding: 8px;
   }
 
   .account-form-fields.sign-in {
-    max-height: 13vh; /* 适合登录的高度 */
+    max-height: 90px; /* 适合登录的高度 */
   }
 
   .account-form-fields.sign-up {
-    max-height: 19vh; /* 适合注册的高度 */
+    max-height: 200px; /* 适合注册的高度 */
   }
 
   .account-form-fields.forgot {
-    max-height: 8vh; /* 适合忘记密码的高度 */
+    max-height: 45px; /* 适合忘记密码的高度 */
   }
 }
 
