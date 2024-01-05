@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './index.module.css';
 import { useNavigate } from "react-router-dom";
 import Axios from "axios";
@@ -36,7 +36,9 @@ function Form({ option }) {
           }
         });
       };
-    
+      useEffect(() => {
+        setPasswordError('')
+        }, [option]);
       const login = () => {
         toast.clearWaitingQueue();
       
@@ -67,14 +69,17 @@ function Form({ option }) {
 
   
     const handlePasswordChange = (event) => {
+      setPasswordError('');
         if(option===2){
       setPasswordReg(event.target.value);}
       else{setPassword(event.target.value)}
     };
   
     const handleRepeatPasswordChange = (event) => {
+      setPasswordError('');
       setRepeatPassword(event.target.value);
     };
+    
   
     const handleSubmit = (event) => {
       event.preventDefault();
