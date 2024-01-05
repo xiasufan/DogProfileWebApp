@@ -1,7 +1,9 @@
 import Axios from 'axios';
-import { useState, useEffect } from 'react';
+import { useState, useEffect,useContext,createContext } from 'react';
 
-const useAuth = () => {
+const AuthContext = createContext(null);
+
+export const AuthProvider = ({ children }) => {
     Axios.defaults.withCredentials = true;
 
     const [loginName, setLoginName] = useState('');
@@ -24,7 +26,10 @@ const useAuth = () => {
         checkLoginStatus();
     }, []); // 空依赖数组意味着效果仅在组件挂载时运行一次
 
-    return { loginName, loginRole };
+    const value = { loginName, setLoginName, loginRole, setLoginRole };
+    return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
-export default useAuth
+export const useAuth = () => {
+    return useContext(AuthContext);
+};

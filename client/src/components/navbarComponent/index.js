@@ -23,8 +23,8 @@ export default function Navbar() {
             Friendlist
           </NavLink></li>
   
-          <li><NavLink to="/history" style={({ isActive }) => ({ color: isActive ? "#62deec" : "" })}>
-            Activities
+          <li><NavLink to="/about" style={({ isActive }) => ({ color: isActive ? "#62deec" : "" })}>
+            About
           </NavLink></li>
           
         </ul>

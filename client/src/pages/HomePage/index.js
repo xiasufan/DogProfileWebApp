@@ -10,14 +10,19 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import Main from '../../components/mainComponent'
 
+import { useAuth } from '../../components/checkLoginComponent';
 
-const Home = ({loginName, loginRole}) => {
+
+const Home = () => {
+
+  const { loginName, loginRole, setLoginName, setLoginRole } = useAuth();
   const navigate=useNavigate()
   const logout = () => {
     Axios.get(process.env.REACT_APP_API_URL +"/logout").then((response) => {
         
 });navigate('/');
 navigate(0)
+setLoginName('')
   };
 
 //   const cookietest = () => {

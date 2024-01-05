@@ -5,29 +5,31 @@ import { BrowserRouter, Route, Link, Routes } from 'react-router-dom';
 
 import Navbar from './components/navbarComponent'
 
-import useAuth from './components/checkLoginComponent'
+import { AuthProvider } from './components/checkLoginComponent';
 
 import Home from "./pages/HomePage"
 import Friend from "./pages/Friend"
 import History from "./pages/History"
 import Stat from "./pages/Stat"
+import About from "./pages/AboutPage"
 
 
 export default function App() {
-  const { loginName, loginRole } = useAuth();
   return (
     <div className='App'>
+      <AuthProvider>
     <Navbar/>
     <Routes>
 
-      <Route path="/" element={<Home loginName={loginName}
-              loginRole={loginRole}/>} />
+      <Route path="/" element={<Home/>} />
       <Route path="/friend" element={<Friend />} />
-      <Route path="/history" element={<History />} />
+      <Route path="/about" element={<About />} />
       <Route path="/stat" element={<Stat />} />
       
 
     </Routes>
+
+    </AuthProvider>
     </div>
 
 
