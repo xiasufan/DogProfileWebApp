@@ -45,6 +45,7 @@ setLoginName('')
     pauseOnHover
     theme="light"
     />
+    <h1>Support by creating an account 🚀</h1>
       {loginName?
       <div>
         <Main loginName={loginName}/>

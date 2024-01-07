@@ -1,8 +1,27 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #f4f4f4
+  background-color: #f4f4f4;
+  font-family: Arial, Helvetica, sans-serif;
 }
+
+.App {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* 使 App 填满整个视口 */
+  overflow: hidden; /* 防止整个应用内容溢出 */
+}
+
+.Navbar {
+  /* 你可能已经有一些样式，确保 Navbar 不会伸缩 */
+  flex-shrink: 0;
+}
+
+.Routes {
+  flex-grow: 1; /* 让 Routes 占据剩余空间 */
+  overflow-y: auto; /* 如果内容超出，则在 Routes 内部滚动 */
+}
+
 
 
   

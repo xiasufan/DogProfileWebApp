@@ -9,28 +9,27 @@ import { AuthProvider } from './components/checkLoginComponent';
 
 import Home from "./pages/HomePage"
 import Friend from "./pages/Friend"
-import History from "./pages/History"
-import Stat from "./pages/Stat"
+import Playground from "./pages/PlaygroundPage"
 import About from "./pages/AboutPage"
 
 
 export default function App() {
   return (
     <div className='App'>
-      <AuthProvider>
-    <Navbar/>
-    <Routes>
-
-      <Route path="/" element={<Home/>} />
-      <Route path="/friend" element={<Friend />} />
-      <Route path="/about" element={<About />} />
-      <Route path="/stat" element={<Stat />} />
-      
-
-    </Routes>
-
-    </AuthProvider>
+  <AuthProvider>
+    <div className='Navbar'>
+      <Navbar/>
     </div>
+    <div className='Routes'>
+      <Routes>
+        <Route path="/" element={<Playground/>} />
+        <Route path="/friend" element={<Friend />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/support" element={<Home />} />
+      </Routes>
+    </div>
+  </AuthProvider>
+</div>
 
 
   );

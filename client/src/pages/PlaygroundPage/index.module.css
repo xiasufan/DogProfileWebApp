@@ -1,0 +1,13 @@
+.canvasContainer {
+    display: flex; /* 使用 Flexbox 布局 */
+    justify-content: center; /* 水平居中 */
+    align-items: center; /* 垂直居中 */
+    height: 100%; /* 父容器高度设置为视口高度，可以根据需要调整 */
+  }
+  
+  /* 可选：确保 Phaser 游戏画布不超过视口大小 */
+  #phaser-game canvas {
+    max-width: 100%; /* 最大宽度不超过父容器宽度 */
+    max-height: 100vh; /* 最大高度不超过视口高度 */
+    margin: auto; /* 如果画布小于父容器大小，自动添加外边距居中 */
+  }

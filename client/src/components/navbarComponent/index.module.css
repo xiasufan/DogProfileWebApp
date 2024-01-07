@@ -29,7 +29,7 @@ nav {
 .navbar li a {
   text-decoration: none;
   position: relative;
-  font-size: 1rem;
+  font-size: 1.5rem;
   font-weight: 600;
   color: #fff;
   transition: 0.3s ease-in-out;
@@ -93,7 +93,7 @@ nav {
     align-items: flex-start;
     justify-content: flex-start;
     position: fixed;
-    top: 0px;
+    top: -30px;
     right: -360px;
     width: 50vw;
     max-width: 250px;

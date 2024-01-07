@@ -1,22 +1,40 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import styles from './index.module.css';
 import { NavLink } from "react-router-dom";
 
 export default function Navbar() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const toggleSidebar = () => {
+  const toggleSidebar = (event) => {
+    event.stopPropagation();
     setSidebarOpen(!sidebarOpen);
   };
+
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (event.target.closest('[data-toggle-sidebar]')) {
+        return;
+      }
+      if (sidebarOpen && !event.target.closest(`.${styles.navbar}`)) {
+        setSidebarOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleOutsideClick);
+
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick);
+    };
+  }, [sidebarOpen]);
     return (
       <nav>
         <h1 style={{ color: 'white', fontSize: '2rem' }}>Welcome</h1>
         <ul className={`${styles.navbar} ${sidebarOpen ? styles.active : ''}`} >
           <li><NavLink to="/" style={({ isActive }) => ({ color: isActive ? "#62deec" : "" })} >
-            Home
+            Playground
           </NavLink></li>
   
-          <li><NavLink to="/stat" style={({ isActive }) => ({ color: isActive ? "#62deec" : "" })}>
-            Stats
+          <li><NavLink to="/support" style={({ isActive }) => ({ color: isActive ? "#62deec" : "" })}>
+            Support
           </NavLink></li>
   
           <li><NavLink to="/friend" style={({ isActive }) => ({ color: isActive ? "#62deec" : "" })}>
@@ -28,7 +46,7 @@ export default function Navbar() {
           </NavLink></li>
           
         </ul>
-        <div className={`${styles.hamburgerMenu} ${sidebarOpen ? styles.active : ''}`} onClick={toggleSidebar}>
+        <div className={`${styles.hamburgerMenu} ${sidebarOpen ? styles.active : ''}`} onClick={toggleSidebar} data-toggle-sidebar>
         <div className={styles.bar}></div>
         <div className={styles.bar}></div>
         <div className={styles.bar}></div>

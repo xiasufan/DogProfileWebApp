@@ -4,8 +4,8 @@ import React from 'react';
 const Friend = () => {
   return (
     <div>
-      <h2>About Us</h2>
-      <p>Learn more about our company and team.</p>
+      <h2>Friendlist coming soon 🚂</h2>
+    
     </div>
   );
 };

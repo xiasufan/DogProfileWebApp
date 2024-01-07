@@ -142,7 +142,7 @@ function Form({ option }) {
   }
 
 function LoginForm() {
-  const [option, setOption] = React.useState(1);
+  const [option, setOption] = React.useState(2);
 
   return (
     <div className={styles.container}>
