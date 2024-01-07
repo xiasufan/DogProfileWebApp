@@ -11,7 +11,7 @@ export default class BootScene extends Phaser.Scene {
         frameHeight: 32
       });
 
-      this.load.image('background', 'assets/testmap.png');
+      this.load.image('background', 'assets/bigmap.png');
     }
   
     create() {

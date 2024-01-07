@@ -1,6 +1,6 @@
 /* 导航栏样式 */
 nav {
-  max-height: 6vh;
+  max-height: 4vh;
   display: flex;
   align-items: center;
   justify-content: space-between;

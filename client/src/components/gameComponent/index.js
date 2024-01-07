@@ -10,8 +10,8 @@ const GameComponent = () => {
     scale: {
       mode: Phaser.Scale.FIT, // 或使用 Phaser.Scale.RESIZE
       parent: 'phaser-game',
-      autoCenter: Phaser.Scale.CENTER_BOTH,
-      width: 800,
+      autoCenter: Phaser.Scale.CENTER_HORIZONTALLY,
+      width: 600,
       height: 1000
   },
     pixelArt: true,
