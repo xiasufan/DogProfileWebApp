@@ -45,7 +45,7 @@ setLoginName('')
     pauseOnHover
     theme="light"
     />
-    <h1>Support by creating an account 🚀</h1>
+    <h1 style={{position: 'absolute',top: '8.5vh',left: 'auto',fontSize:'1.5rem',color:'grey'}}>Support by creating an account 🚀</h1>
       {loginName?
       <div>
         <Main loginName={loginName}/>
