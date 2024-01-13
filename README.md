@@ -12,6 +12,16 @@ dogapp
 │  ├─ package-lock.json
 │  ├─ package.json
 │  ├─ public
+│  │  ├─ assets
+│  │  │  ├─ base_character.png
+│  │  │  ├─ bigmap.png
+│  │  │  ├─ custom
+│  │  │  │  ├─ body1.png
+│  │  │  │  └─ hair1.png
+│  │  │  ├─ player.png
+│  │  │  ├─ shader
+│  │  │  │  └─ colorChange.frag
+│  │  │  └─ testmap.png
 │  │  ├─ dog.riv
 │  │  ├─ favicon.ico
 │  │  └─ index.html
@@ -25,7 +35,11 @@ dogapp
 │  │  │  │  └─ index.js
 │  │  │  ├─ gameComponent
 │  │  │  │  ├─ index.js
-│  │  │  │  └─ player.png
+│  │  │  │  ├─ scenes
+│  │  │  │  │  ├─ bootScene.js
+│  │  │  │  │  ├─ mainScene.js
+│  │  │  │  │  └─ testScene.js
+│  │  │  │  └─ utils
 │  │  │  ├─ loginComponent
 │  │  │  │  ├─ index.js
 │  │  │  │  └─ index.module.css

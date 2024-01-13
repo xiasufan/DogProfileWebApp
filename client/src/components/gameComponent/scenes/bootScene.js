@@ -16,6 +16,6 @@ export default class BootScene extends Phaser.Scene {
   
     create() {
       // 预加载完成后，直接启动下一个场景
-      this.scene.start('MainScene');
+      this.scene.start('TestScene');
     }
   }

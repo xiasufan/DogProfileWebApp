@@ -2,11 +2,15 @@ import React, { useEffect } from 'react';
 import Phaser from 'phaser';
 import MainScene from './scenes/mainScene';
 import BootScene from './scenes/bootScene';
+import TestScene from './scenes/testScene';
 import VirtualJoystickPlugin from 'phaser3-rex-plugins/plugins/virtualjoystick-plugin.js';
+
+import MultiColorPipeline from './utils/MultiColor';
 
 const GameComponent = () => {
   const config = {
     type: Phaser.AUTO,
+    backgroundColor: '#5DACD8',
     scale: {
       mode: Phaser.Scale.FIT, // 或使用 Phaser.Scale.RESIZE
       parent: 'phaser-game',
@@ -22,14 +26,15 @@ const GameComponent = () => {
         debug: false
       }
     },
-    scene: [BootScene,MainScene],
+    scene: [BootScene,TestScene],
     plugins: {
       global: [{
           key: 'rexVirtualJoystick',
           plugin: VirtualJoystickPlugin,
           start: true
       }]
-  }
+  },
+  pipeline: { 'MultiColor': MultiColorPipeline }
   };
 
   useEffect(() => {
