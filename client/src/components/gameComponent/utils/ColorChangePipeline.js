@@ -40,7 +40,7 @@ export class ColorChangePipeline extends Phaser.Renderer.WebGL.Pipelines.SingleP
                     }
                     
                     void main() {
-                        vec4 texel = texture2D(uMainSampler[1], outTexCoord);
+                        vec4 texel = texture2D(uMainSampler[0], outTexCoord);
                     
                     
                         if (texel.a > 0.0 && texel.a < 1.0) {
