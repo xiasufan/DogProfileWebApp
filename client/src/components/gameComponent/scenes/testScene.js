@@ -36,7 +36,8 @@ export default class TestScene extends Phaser.Scene {
     this.customPipeline = this.renderer.pipelines.add('Custom', new ColorChangePipeline(this.game));
 
     this.customPipeline = this.renderer.pipelines.add('Alpha', new ResetAlphaPipeline(this.game));
-
+    const blockSize = 40; // 新的方块大小
+    const blockSpacing = 10; // 方块之间的间距
 
     const colorSprites = [];
     // 定义一组基本颜色
@@ -44,11 +45,9 @@ export default class TestScene extends Phaser.Scene {
         hair: [
             0x000000, // 黑色
             0x784212, // 棕色
-            0xF0E68C, // 金色
             0xD2B48C, // 棕褐色
             0xA52A2A, // 褐色
             0x800000, // 栗色
-            0x808080, // 灰色
             0xFFFFFF, // 白色
             0xFFFACD, // 柠檬绸色
             0xFFD700  // 金色
@@ -61,17 +60,14 @@ export default class TestScene extends Phaser.Scene {
             0xB0C4DE, // 亮钢兰
             0x0000CD, // 中蓝色
             0x8B008B, // 暗洋红
-            0xFFD700, // 金色
             0x008B8B, // 暗青色
-            0x9400D3  // 暗紫罗兰
+
         ],
         face: [
             0xFF6347, // 西红柿
             0x40E0D0, // 青绿色
-            0xEE82EE, // 紫罗兰
             0xDA70D6, // 兰花的紫色
             0xFFA07A, // 浅鲑鱼色
-            0x32CD32, // 酸橙绿
             0x800000, // 栗色
             0xFF00FF, // 红紫色
             0x66CDAA, // 中绿宝石
@@ -108,7 +104,7 @@ const randomButton = this.add.text(200, 800, 'Random!', { fontSize: '50px', font
 
     Object.keys(colorGroups).forEach((part, rowIndex) => {
         colorGroups[part].forEach((color, index) => {
-            const colorSprite = this.add.rectangle(100 + index * 40, 50 + rowIndex * 50, 30, 30, color)
+            const colorSprite = this.add.rectangle(100 + index * (blockSize + blockSpacing), 50 + rowIndex * (blockSize + blockSpacing), blockSize, blockSize, color)
                 .setInteractive()
                 .on('pointerdown', () => {
                     this.selectColor(part, color, colorSprite);
@@ -118,7 +114,7 @@ const randomButton = this.add.text(200, 800, 'Random!', { fontSize: '50px', font
         });
 
         // 添加取消键
-        const resetIcon = this.add.rectangle(100 + colorGroups[part].length * 40, 50 + rowIndex * 50, 30, 30, 'black')
+        const resetIcon = this.add.rectangle(100 + colorGroups[part].length *  (blockSize + blockSpacing), 50 + rowIndex * (blockSize + blockSpacing), blockSize, blockSize, 'black')
             .setInteractive()
             .on('pointerdown', () => {
                 this.resetColor(part);
@@ -186,13 +182,14 @@ const randomButton = this.add.text(200, 800, 'Random!', { fontSize: '50px', font
   createArrowButtons(scene, x, y, key, sprite) {
     // 增加箭头距离精灵中心的水平偏移量
     const arrowOffset = 220;
+    const arrowSize = 30;
 
     // 创建左箭头
     const leftArrow = scene.add.graphics({ fillStyle: { color: 0x000000 } });
     leftArrow.beginPath();
-    leftArrow.moveTo(x - arrowOffset + 20, y - 10); // 修改箭头方向
+    leftArrow.moveTo(x - arrowOffset + arrowSize, y - arrowSize);
     leftArrow.lineTo(x - arrowOffset, y);
-    leftArrow.lineTo(x - arrowOffset + 20, y + 10);
+    leftArrow.lineTo(x - arrowOffset + arrowSize, y + arrowSize);
     leftArrow.closePath();
     leftArrow.fillPath();
     leftArrow.setInteractive(new Phaser.Geom.Polygon([x - arrowOffset + 20, y - 10, x - arrowOffset, y, x - arrowOffset + 20, y + 10]), Phaser.Geom.Polygon.Contains);
@@ -200,9 +197,9 @@ const randomButton = this.add.text(200, 800, 'Random!', { fontSize: '50px', font
     // 创建右箭头
     const rightArrow = scene.add.graphics({ fillStyle: { color: 0x000000 } });
     rightArrow.beginPath();
-    rightArrow.moveTo(x + arrowOffset - 20, y - 10); // 修改箭头方向
+    rightArrow.moveTo(x + arrowOffset - arrowSize, y - arrowSize);
     rightArrow.lineTo(x + arrowOffset, y);
-    rightArrow.lineTo(x + arrowOffset - 20, y + 10);
+    rightArrow.lineTo(x + arrowOffset - arrowSize, y + arrowSize);
     rightArrow.closePath();
     rightArrow.fillPath();
     rightArrow.setInteractive(new Phaser.Geom.Polygon([x + arrowOffset - 20, y - 10, x + arrowOffset, y, x + arrowOffset - 20, y + 10]), Phaser.Geom.Polygon.Contains);
