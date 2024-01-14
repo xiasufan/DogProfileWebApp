@@ -26,6 +26,11 @@ export default class TestScene extends Phaser.Scene {
         frameWidth: 96,
         frameHeight: 96
       });
+
+      this.load.spritesheet('hair_back', 'assets/custom/hair_back.png', {
+        frameWidth: 96,
+        frameHeight: 96
+      });
   }
  
 
@@ -83,13 +88,16 @@ export default class TestScene extends Phaser.Scene {
 
     this.borderGraphics = this.add.graphics();
     // 跟踪当前选中的颜色
+    this.hair_back = this.add.sprite(300, 350, 'hair_back',0).setScale(4).setPipeline('Alpha');
 
     const face = this.add.sprite(300, 380, 'face', 0).setScale(4).setPipeline('Alpha');
     this.createArrowButtons(this, 300, 430, 'face', face);
-    const hair = this.add.sprite(300, 350, 'hair',0).setScale(4).setPipeline('Alpha');
-    this.createArrowButtons(this, 300, 310, 'hair', hair);
+    
     const body = this.add.sprite(300, 570, 'body', 0).setScale(4).setPipeline('Alpha');
     this.createArrowButtons(this, 300, 620, 'body', body);
+
+    const hair = this.add.sprite(300, 350, 'hair',0).setScale(4).setPipeline('Alpha');
+    this.createArrowButtons(this, 300, 310, 'hair', hair);
 // 创建随机选择按钮
 const randomButton = this.add.text(200, 800, 'Random!', { fontSize: '50px', fontStyle:'Bold',fill: '#fff' })
 .setInteractive()
@@ -143,17 +151,34 @@ const randomButton = this.add.text(200, 800, 'Random!', { fontSize: '50px', font
             const totalFrames = partData.sprite.texture.frameTotal;
             const randomFrame = Phaser.Math.Between(0, totalFrames - 2);
             partData.sprite.setFrame(randomFrame);
+            if (part === 'hair') {
+                this.hair_back.setFrame(randomFrame);
+            }
+    
 
             const colors = colorGroups[part];
-        const colorIndex = Phaser.Math.Between(0, colors.length - 1);
-        const randomColor = colors[colorIndex];
-        const selectedColor = Phaser.Display.Color.IntegerToColor(randomColor);
+        const colorIndex = Phaser.Math.Between(0, colors.length);
+        if(colorIndex==colors.length){
+            this.resetColor(part);
+        }
+        else{
+            const randomColor = colors[colorIndex];
+            const selectedColor = Phaser.Display.Color.IntegerToColor(randomColor);
 
-        partData.sprite.setPipeline('Custom');
-        partData.sprite.pipelineData = { targetHue: new Phaser.Math.Vector3(selectedColor._h, selectedColor._s, selectedColor._v) };
+            partData.sprite.setPipeline('Custom');
+            partData.sprite.pipelineData = { targetHue: new Phaser.Math.Vector3(selectedColor._h, selectedColor._s, selectedColor._v) };
+            
+            if (part === 'hair' && this.hair_back) {
+                this.hair_back.setPipeline('Custom');
+                this.hair_back.pipelineData = { targetHue: new Phaser.Math.Vector3(selectedColor._h, selectedColor._s, selectedColor._v) };
+            }
 
-        // 更新选中的颜色块
-        partData.colorSprite = this.colorBlocks[part][colorIndex];
+            // 更新选中的颜色块
+            partData.colorSprite = this.colorBlocks[part][colorIndex];
+        }
+        
+
+       
     });
 
     // 更新描边
@@ -183,6 +208,7 @@ const randomButton = this.add.text(200, 800, 'Random!', { fontSize: '50px', font
     // 增加箭头距离精灵中心的水平偏移量
     const arrowOffset = 220;
     const arrowSize = 30;
+    const hitboxSize = 50;
 
     // 创建左箭头
     const leftArrow = scene.add.graphics({ fillStyle: { color: 0x000000 } });
@@ -192,7 +218,8 @@ const randomButton = this.add.text(200, 800, 'Random!', { fontSize: '50px', font
     leftArrow.lineTo(x - arrowOffset + arrowSize, y + arrowSize);
     leftArrow.closePath();
     leftArrow.fillPath();
-    leftArrow.setInteractive(new Phaser.Geom.Polygon([x - arrowOffset + 20, y - 10, x - arrowOffset, y, x - arrowOffset + 20, y + 10]), Phaser.Geom.Polygon.Contains);
+    const leftHitbox = new Phaser.Geom.Rectangle(x - arrowOffset - hitboxSize / 2, y - hitboxSize / 2, hitboxSize, hitboxSize);
+    leftArrow.setInteractive(leftHitbox, Phaser.Geom.Rectangle.Contains);
 
     // 创建右箭头
     const rightArrow = scene.add.graphics({ fillStyle: { color: 0x000000 } });
@@ -202,8 +229,8 @@ const randomButton = this.add.text(200, 800, 'Random!', { fontSize: '50px', font
     rightArrow.lineTo(x + arrowOffset - arrowSize, y + arrowSize);
     rightArrow.closePath();
     rightArrow.fillPath();
-    rightArrow.setInteractive(new Phaser.Geom.Polygon([x + arrowOffset - 20, y - 10, x + arrowOffset, y, x + arrowOffset - 20, y + 10]), Phaser.Geom.Polygon.Contains);
-
+    const rightHitbox = new Phaser.Geom.Rectangle(x + arrowOffset - hitboxSize / 2, y - hitboxSize / 2, hitboxSize, hitboxSize);
+    rightArrow.setInteractive(rightHitbox, Phaser.Geom.Rectangle.Contains);
     // 为左箭头添加点击事件
     leftArrow.on('pointerdown', () => this.changeSpriteFrame(sprite, key, -1));
 
@@ -219,6 +246,11 @@ selectColor(part, color, colorSprite) {
         const selectedColor = Phaser.Display.Color.IntegerToColor(color);
         sprite.pipelineData = { targetHue: new Phaser.Math.Vector3(selectedColor._h, selectedColor._s, selectedColor._v) };
 
+
+        if (part === 'hair' && this.hair_back) {
+            this.hair_back.setPipeline('Custom');
+            this.hair_back.pipelineData = { targetHue: new Phaser.Math.Vector3(selectedColor._h, selectedColor._s, selectedColor._v) };
+        }
         // 更新选中的颜色块
         this.selectedColors[part].colorSprite = colorSprite;
 
@@ -231,6 +263,10 @@ resetColor(part) {
     const partData = this.selectedColors[part];
     if (partData.sprite) {
         partData.sprite.setPipeline('Alpha');
+
+        if (part === 'hair' && this.hair_back) {
+            this.hair_back.setPipeline('Alpha');
+        }
 
         // 将选中的颜色块设置为 null，表示没有颜色被选中
         partData.colorSprite = null;
@@ -264,6 +300,12 @@ updateBorder() {
     const totalFrames = sprite.texture.frameTotal;
     let newFrame = Phaser.Math.Wrap(sprite.frame.name + change, 0, totalFrames-1);
     sprite.setFrame(newFrame);
+
+    // 检查是否正在更改 "hair" 图层的帧
+    if (key === 'hair') {
+        // 如果是，确保 "hair_back" 图层的帧索引与 "hair" 相同
+        this.hair_back.setFrame(newFrame);
+    }
 }
 
   update() {
