@@ -2,9 +2,11 @@ const express = require("express");
 const app = express();
 const mysql = require("mysql2");
 const cors = require("cors");
-
+const Axios = require("axios")
+const OpenAI = require("openai")
 
 require('dotenv').config();
+
 
 app.use(
   cors({
@@ -13,6 +15,9 @@ app.use(
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE'
   })
 );
+
+const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+
 
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
@@ -28,6 +33,9 @@ app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.set('trust proxy', 1);
+
+
+
 
 app.use(
   session({
@@ -64,6 +72,22 @@ db.on('error', function(err) {
   console.log('Total connections in pool: ', pool.totalConnections());
   console.log('Free connections in pool: ', pool.freeConnections());
   console.log('Connection queue length: ', pool.queue.length);
+});
+
+app.post('/api/chat', async (req, res) => {
+  try {
+    const completion = await openai.chat.completions.create({
+      messages: [{ role: "system", content: req.body.prompt }],
+      model: "gpt-4",
+    });
+    console.log(completion.choices[0].message.content);
+
+    // 将GPT-4的响应发送回客户端
+    res.json(completion.choices[0].message.content);
+  } catch (error) {
+    console.error('Error calling OpenAI API:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
 });
 
 app.post("/register", (req, res) => {
@@ -110,6 +134,9 @@ app.get("/logout", (req, res) => {
     res.send({ message: "invalid session" });
   }
 });
+
+
+
 
 app.post("/login", (req, res) => {
   const username = req.body.username;
