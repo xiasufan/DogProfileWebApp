@@ -40,6 +40,10 @@ export default function Navbar() {
           <li><NavLink to="/friend" style={({ isActive }) => ({ color: isActive ? "#62deec" : "" })}>
             Friendlist
           </NavLink></li>
+
+          <li><NavLink to="/chat" style={({ isActive }) => ({ color: isActive ? "#62deec" : "" })}>
+            Chat
+          </NavLink></li>
   
           <li><NavLink to="/about" style={({ isActive }) => ({ color: isActive ? "#62deec" : "" })}>
             About

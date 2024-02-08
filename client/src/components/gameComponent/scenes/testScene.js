@@ -88,15 +88,15 @@ export default class TestScene extends Phaser.Scene {
 
     this.borderGraphics = this.add.graphics();
     // 跟踪当前选中的颜色
-    this.hair_back = this.add.sprite(300, 396, 'hair_back',0).setScale(4).setPipeline('Alpha');
+    this.hair_back = this.add.sprite(300, 396, 'hair_back',0).setScale(3).setPipeline('Alpha');
 
-    const face = this.add.sprite(300, 380, 'face', 0).setScale(4).setPipeline('Alpha');
+    const face = this.add.sprite(300, 380, 'face', 0).setScale(3).setPipeline('Alpha');
     this.createArrowButtons(this, 300, 430, 'face', face);
     
-    const body = this.add.sprite(300, 570, 'body', 0).setScale(4).setPipeline('Alpha');
+    const body = this.add.sprite(300, 524, 'body', 0).setScale(3).setPipeline('Alpha');
     this.createArrowButtons(this, 300, 620, 'body', body);
 
-    const hair = this.add.sprite(300, 396, 'hair',0).setScale(4).setPipeline('Alpha');
+    const hair = this.add.sprite(300, 396, 'hair',0).setScale(3).setPipeline('Alpha');
     this.createArrowButtons(this, 300, 310, 'hair', hair);
 // 创建随机选择按钮
 const randomButton = this.add.text(200, 800, 'Random!', { fontSize: '50px', fontStyle:'Bold',fill: '#fff' })

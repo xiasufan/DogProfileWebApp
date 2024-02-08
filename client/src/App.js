@@ -11,6 +11,7 @@ import Home from "./pages/HomePage"
 import Friend from "./pages/Friend"
 import Playground from "./pages/PlaygroundPage"
 import About from "./pages/AboutPage"
+import Chat from "./pages/ChatPage"
 
 
 export default function App() {
@@ -26,6 +27,7 @@ export default function App() {
         <Route path="/friend" element={<Friend />} />
         <Route path="/about" element={<About />} />
         <Route path="/support" element={<Home />} />
+        <Route path="/chat" element={<Chat />} />
       </Routes>
     </div>
   </AuthProvider>
