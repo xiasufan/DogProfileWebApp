@@ -23,11 +23,11 @@ export default function App() {
     </div>
     <div className='Routes'>
       <Routes>
-        <Route path="/" element={<Playground/>} />
+        <Route path="/" element={<Chat/>} />
         <Route path="/friend" element={<Friend />} />
         <Route path="/about" element={<About />} />
         <Route path="/support" element={<Home />} />
-        <Route path="/chat" element={<Chat />} />
+        <Route path="/playground" element={<Playground />} />
       </Routes>
     </div>
   </AuthProvider>
