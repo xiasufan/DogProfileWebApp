@@ -9,7 +9,7 @@ const CheatSheet = () => {
 let squares = numbers.map(function(num) {
     return num * num;
 });
-console.log(squares); // 输出: [1, 4, 9, 16, 25]`
+console.log(squares); // Output: [1, 4, 9, 16, 25]`
     },
     {
       title: "calculate hash looping from two direction",
@@ -35,19 +35,19 @@ console.log(squares); // 输出: [1, 4, 9, 16, 25]`
       
       let isInArray = numbers.includes(numberToCheck);
       
-      console.log(isInArray); // 如果数组包含数字3，输出为 true，否则为 false
+      console.log(isInArray); 
       
     `
     },
     {
-      title: "append array to array 展开运算符",
+      title: "append array to array",
       code: `let array1 = [1, 2, 3];
       let array2 = [4, 5, 6];
       
-      // 使用展开运算符将 array2 中的元素合并到 array1
+     
       array1.push(...array2);
       
-      console.log(array1); // 输出: [1, 2, 3, 4, 5, 6]
+      console.log(array1); // Output: [1, 2, 3, 4, 5, 6]
       
     `
     },
@@ -59,7 +59,7 @@ console.log(squares); // 输出: [1, 4, 9, 16, 25]`
     },
     
     {
-      title: "代码优化 ",
+      title: "Optimise ",
       code: `
       function gethash(str){
         let values=str.split('').map(function(char){return char.charCodeAt(0)}));
@@ -70,8 +70,7 @@ console.log(squares); // 输出: [1, 4, 9, 16, 25]`
         }
         return sum % (Math.pow(10,9)+7);
       }
-      不知道为什么错
-      但是
+
       function gethash(str){
         const mod = Math.pow(10,9)+7
         const values=str.split('').map(char=>char.charCodeAt(0));
@@ -95,7 +94,7 @@ console.log(squares); // 输出: [1, 4, 9, 16, 25]`
 
 const sum = numbers.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
 
-console.log(sum); // 输出: 15
+console.log(sum); // Output: 15
 
     `
     },

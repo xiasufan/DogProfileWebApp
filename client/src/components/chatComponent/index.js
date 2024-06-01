@@ -25,7 +25,7 @@ const GPT4Component = () => {
             setResponse(errorMessage);
         }
 
-        setIsLoading(false); // 加载完成
+        setIsLoading(false); 
     };
     
     return (
@@ -34,22 +34,22 @@ const GPT4Component = () => {
             flexDirection: 'column',
             justifyContent: 'center',
             alignItems: 'center',
-            height: '100vh' // 使外部容器占满整个视口高度
+            height: '100vh'
           }}>
             <textarea 
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="有什么问题在这里输入吧^ ^"
+                placeholder="Ask anything here ^-^"
                 rows="4"
                 style={{ width: '80%', justifyContent: 'center'}}
             />
-            <button onClick={handleSubmit} style={{ margin: '10px 0' }}>提交</button>
+            <button onClick={handleSubmit} style={{ margin: '10px 0' }}>Send</button>
             {isLoading ? (
-            <p>加载中...</p> // 这里可以替换为更复杂的加载动画或图标
+            <p>Loading...</p> 
         ) : (
             <div>
-                <strong>回复:</strong>
-                <p>{response.data}</p> {/* 确保response.data是字符串 */}
+                <strong>Response:</strong>
+                <p>{response.data}</p> 
             </div>
         )}
         </div>

@@ -30,7 +30,7 @@ export default function Navbar() {
         <h1 style={{ color: 'white', fontSize: '2rem' }}>Welcome</h1>
         <ul className={`${styles.navbar} ${sidebarOpen ? styles.active : ''}`} >
           <li><NavLink to="/" style={({ isActive }) => ({ color: isActive ? "#62deec" : "" })} >
-            Test
+            Chatbot
           </NavLink></li>
   
           <li><NavLink to="/support" style={({ isActive }) => ({ color: isActive ? "#62deec" : "" })}>
@@ -38,7 +38,7 @@ export default function Navbar() {
           </NavLink></li>
   
           <li><NavLink to="/friend" style={({ isActive }) => ({ color: isActive ? "#62deec" : "" })}>
-            Friendlist
+            Notes
           </NavLink></li>
 
           <li><NavLink to="/playground" style={({ isActive }) => ({ color: isActive ? "#62deec" : "" })}>

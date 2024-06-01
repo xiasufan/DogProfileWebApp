@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './index.module.css'
-import resumePdf from './Sufan Xia CV.pdf';
+import resumePdf from './SE-CV-Max-Xia.pdf';
 
 const handleDownloadResume = () => {
     window.open(resumePdf);
